@@ -1,0 +1,10 @@
+.env
+.streamlit/secrets.toml
+bank.db
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.DS_Store
