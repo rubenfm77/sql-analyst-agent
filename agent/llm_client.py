@@ -1,6 +1,5 @@
 """
 LLMClient interface + Groq implementation (OpenAI-compatible endpoint).
-Swap the backend by implementing LLMClient and passing a different instance.
 """
 
 from __future__ import annotations
@@ -10,16 +9,10 @@ from typing import Protocol, runtime_checkable
 
 @runtime_checkable
 class LLMClient(Protocol):
-    """Minimal interface: one round-trip, returns the assistant text."""
     def complete(self, system: str, user: str) -> str: ...
 
 
 class GroqClient:
-    """
-    Calls Groq via the OpenAI-compatible REST API.
-    Reads GROQ_API_KEY from env or Streamlit secrets.
-    """
-
     DEFAULT_MODEL = "llama-3.3-70b-versatile"
     BASE_URL      = "https://api.groq.com/openai/v1"
 
@@ -27,30 +20,24 @@ class GroqClient:
         self._api_key = api_key or self._resolve_key()
         self._model   = model or self.DEFAULT_MODEL
 
-    # ------------------------------------------------------------------
     @staticmethod
     def _resolve_key() -> str:
-        # 1. plain env var
         key = os.environ.get("GROQ_API_KEY", "")
         if key:
             return key
-        # 2. Streamlit secrets (only available inside a Streamlit process)
         try:
-            import streamlit as st          # noqa: PLC0415
+            import streamlit as st
             key = st.secrets.get("GROQ_API_KEY", "")
             if key:
                 return key
         except Exception:
             pass
         raise EnvironmentError(
-            "GROQ_API_KEY not found. "
-            "Set it as an environment variable or add it to .streamlit/secrets.toml."
+            "GROQ_API_KEY not set. Add it in the sidebar or create a .env file."
         )
 
-    # ------------------------------------------------------------------
     def complete(self, system: str, user: str) -> str:
-        from openai import OpenAI           # noqa: PLC0415  (optional dep)
-
+        from openai import OpenAI
         client = OpenAI(api_key=self._api_key, base_url=self.BASE_URL)
         response = client.chat.completions.create(
             model=self._model,
@@ -64,6 +51,6 @@ class GroqClient:
         return response.choices[0].message.content or ""
 
 
-def default_client() -> LLMClient:
-    """Factory used by the app. Returns a GroqClient."""
-    return GroqClient()
+def make_client(api_key: str | None = None) -> LLMClient:
+    """Create a client with an optional runtime key override."""
+    return GroqClient(api_key=api_key)

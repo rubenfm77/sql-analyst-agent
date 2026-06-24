@@ -1,5 +1,6 @@
 streamlit>=1.35
-openai>=1.30          # used as Groq client (OpenAI-compatible)
+openai>=1.30
 pandas>=2.2
 plotly>=5.22
 numpy>=1.26
+python-dotenv>=1.0
