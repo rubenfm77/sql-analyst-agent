@@ -8,6 +8,8 @@ A deploy-ready Streamlit app that translates plain-English business questions in
 
 ## Demo
 
+**[▶ Try the live app](https://sql-analyst-agent-nqtymwzlydyhbza6a9jzrf.streamlit.app/)**
+
 | Ask a question | Get SQL + results + chart |
 |---|---|
 | *"What is the total exposure and average RAROC by country?"* | Bar chart of RAROC across 15 European countries |
