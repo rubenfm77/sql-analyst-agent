@@ -13,7 +13,7 @@ A deploy-ready Streamlit app that translates plain-English business questions in
 
 ---
 
-## Demo
+## 🎬 Demo
 
 **[▶ Try the live app](https://sql-analyst-agent-nqtymwzlydyhbza6a9jzrf.streamlit.app/)**
 
@@ -25,7 +25,7 @@ A deploy-ready Streamlit app that translates plain-English business questions in
 
 ---
 
-## Stack
+## 🧱 Stack
 
 | Layer | Technology |
 |---|---|
@@ -38,7 +38,7 @@ A deploy-ready Streamlit app that translates plain-English business questions in
 
 ---
 
-## Architecture
+## 🗂️ Architecture
 
 ```
 sql-analyst-agent/
@@ -59,7 +59,7 @@ The LLM backend is hidden behind an `LLMClient` protocol — swap Groq for any O
 
 ---
 
-## Synthetic Database
+## 🗄️ Synthetic Database
 
 Seeded with a fixed random seed (reproducible):
 
@@ -71,7 +71,7 @@ Seeded with a fixed random seed (reproducible):
 
 **Pre-built views:** `v_portfolio_summary`, `v_loan_performance`, `v_risk_by_manager`
 
-### Key credit-risk metrics (stored as columns)
+### 📊 Key credit-risk metrics
 
 | Metric | Description |
 |---|---|
@@ -86,7 +86,7 @@ Seeded with a fixed random seed (reproducible):
 
 ---
 
-## Quick start
+## 🚀 Quick Start
 
 ```bash
 # 1. Clone & install
@@ -99,18 +99,18 @@ cp .env.example .env
 # edit .env → GROQ_API_KEY=gsk_...
 
 # 3. Run the app
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
-On first run click **Rebuild bank.db** in the sidebar to generate the synthetic dataset.
+The database is auto-generated on first launch. No manual setup needed.
 
-### Streamlit Cloud
+### ☁️ Streamlit Cloud
 
-Add `GROQ_API_KEY` to **Secrets** (`.streamlit/secrets.toml`) and deploy. The database is rebuilt on first click inside the app.
+Add `GROQ_API_KEY` to **Secrets** (App settings → Secrets) and deploy from the repo. The database rebuilds automatically on cold start.
 
 ---
 
-## Safety design
+## 🔒 Safety Design
 
 - Only `SELECT` statements accepted — DDL/DML keywords are blocked before execution.
 - 15-second query timeout via a background thread.
@@ -119,7 +119,7 @@ Add `GROQ_API_KEY` to **Secrets** (`.streamlit/secrets.toml`) and deploy. The da
 
 ---
 
-## Conclusions
+## 📈 Conclusions
 
 The agent correctly answers a broad range of analytical questions including:
 
