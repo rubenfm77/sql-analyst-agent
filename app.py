@@ -23,6 +23,12 @@ from ui.chart         import auto_chart
 
 DB_PATH = Path(__file__).parent / "bank.db"
 
+# ─── Auto-seed on first run (handles Streamlit Cloud cold starts) ─────────────
+if not DB_PATH.exists():
+    with st.spinner("Building synthetic banking database — this takes ~10 seconds on first run …"):
+        rebuild_db(DB_PATH)
+    st.cache_data.clear()
+
 SAMPLE_QUESTIONS = [
     "What is the total exposure and average RAROC by country?",
     "Show me the top 10 companies by capital consumption",
@@ -178,7 +184,7 @@ with st.sidebar:
     else:
         st.error("bank.db missing")
 
-    if st.button("🔄 Rebuild bank.db", use_container_width=True):
+    if st.button("🔄 Reset & Rebuild", use_container_width=True, help="Drops and regenerates bank.db from scratch"):
         with st.spinner("Generating 2 000 companies · ~6 k loans · ~120 k payments …"):
             try:
                 rebuild_db(DB_PATH)
