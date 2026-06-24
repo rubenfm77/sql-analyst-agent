@@ -1,5 +1,12 @@
 # SQL Analyst Agent 🏦
 
+[![Live App](https://img.shields.io/badge/▶%20Live%20App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://sql-analyst-agent-nqtymwzlydyhbza6a9jzrf.streamlit.app/)
+[![Groq](https://img.shields.io/badge/LLM-Groq%20%7C%20Llama%203.3%2070B-f55036?style=for-the-badge&logo=meta&logoColor=white)](https://console.groq.com)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
+[![Plotly](https://img.shields.io/badge/Charts-Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+
 > **⚠️ DISCLAIMER: All data in this project is entirely fictional and randomly generated. No real companies, financial institutions, or individuals are represented.**
 
 A deploy-ready Streamlit app that translates plain-English business questions into SQL queries, executes them against a synthetic SME credit portfolio, and renders an auto-selected chart — demonstrating LLM tooling, SQL, and BI for regulated banking.
